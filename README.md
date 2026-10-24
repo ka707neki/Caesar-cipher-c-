@@ -8,7 +8,7 @@ A colorful command-line Caesar cipher tool written in C++. Type a message, choos
 - Preserves upper/lower case; digits, spaces and symbols stay unchanged
 - Handles any shift value, including negative and very large numbers
 - Input validation (re-asks if you type a non-number)
-- Colored terminal UI with a boxed title and typing animation
+- Colored terminal UI with a rainbow ASCII-art logo and typing animation
 - Run as many times as you like without restarting
 
 ## 📖 How it works
@@ -35,11 +35,16 @@ g++ -std=c++11 caesar_cipher.cpp -o caesar_cipher
 ## 🖥️ Example
 
 ```
-  ==================================================
-  |                                                |
-  |               CAESAR CIPHER TOOL               |
-  |                                                |
-  ==================================================
+   ██████╗ █████╗ ███████╗███████╗ █████╗ ██████╗
+  ██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗
+  ██║     ███████║█████╗  ███████╗███████║██████╔╝
+  ██║     ██╔══██║██╔══╝  ╚════██║██╔══██║██╔══██╗
+  ╚██████╗██║  ██║███████╗███████║██║  ██║██║  ██║
+   ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+
+  ───────────────────────────── ✦ ───────────────────────
+                C I P H E R   T O O L
+  ───────────────────────────── ✦ ───────────────────────
 
   Enter text  : Hello, World!
   Enter shift : 3
