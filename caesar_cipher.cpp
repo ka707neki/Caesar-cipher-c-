@@ -13,6 +13,8 @@ namespace color {
     const string red     = "\033[31m";
     const string green   = "\033[32m";
     const string yellow  = "\033[33m";
+    const string blue    = "\033[34m";
+    const string magenta = "\033[35m";
     const string cyan    = "\033[36m";
     const string gray    = "\033[90m";
 }
@@ -27,19 +29,35 @@ void typeText(const string& text, int delayMs = 20)
     }
 }
 
-// Draw a centered title inside a box
-void printBanner(const string& title)
+// Draw a big ASCII-art logo with a rainbow gradient, then a subtitle
+void printBanner(const string& subtitle)
 {
-    const int width = 48;                          // inner width of the box
-    int left  = (width - (int)title.size()) / 2;   // spaces before the title
-    int right = width - (int)title.size() - left;  // spaces after the title
+    // Each line of the logo gets its own color for a gradient effect
+    const string logo[6] = {
+        " ██████╗ █████╗ ███████╗███████╗ █████╗ ██████╗ ",
+        "██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗",
+        "██║     ███████║█████╗  ███████╗███████║██████╔╝",
+        "██║     ██╔══██║██╔══╝  ╚════██║██╔══██║██╔══██╗",
+        "╚██████╗██║  ██║███████╗███████║██║  ██║██║  ██║",
+        " ╚═════╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝"
+    };
+    const string shades[6] = {
+        color::red, color::yellow, color::green,
+        color::cyan, color::blue, color::magenta
+    };
 
-    cout << color::cyan << color::bold;
-    cout << "\n  " << string(width + 2, '=') << "\n";
-    cout << "  |" << string(width, ' ') << "|\n";
-    cout << "  |" << string(left, ' ') << title << string(right, ' ') << "|\n";
-    cout << "  |" << string(width, ' ') << "|\n";
-    cout << "  " << string(width + 2, '=') << "\n\n" << color::reset;
+    cout << "\n";
+    for (int i = 0; i < 6; i++)
+        cout << "  " << color::bold << shades[i] << logo[i] << color::reset << "\n";
+
+    // Subtitle centered under the logo (logo width = 48)
+    int pad = (48 - (int)subtitle.size()) / 2;
+    cout << "\n  " << color::gray << "────────────────────── " << color::yellow << "✦"
+         << color::gray << " ───────────────────────" << color::reset << "\n";
+    cout << "  " << string(pad > 0 ? pad : 0, ' ')
+         << color::bold << color::magenta << subtitle << color::reset << "\n";
+    cout << "  " << color::gray << "────────────────────── " << color::yellow << "✦"
+         << color::gray << " ───────────────────────" << color::reset << "\n\n";
 }
 
 // Shift every letter forward by `shift` positions (wraps around the alphabet)
@@ -76,7 +94,7 @@ string decrypt(string text, int shift)
 
 int main()
 {
-    printBanner("CAESAR CIPHER TOOL");
+    printBanner("C I P H E R   T O O L");
 
     char again = 'y';
     while (again == 'y' || again == 'Y')
